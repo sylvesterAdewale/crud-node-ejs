@@ -1,0 +1,80 @@
+<%- include("partials/header") %>
+<main>
+<form class="container">
+	<div>
+		<p>Report a Crime</p>
+	</div>
+	<div>
+		<label for="crime">Type of Crime: </label>
+		<select name="tCrime" id="crime">
+			<option value="Assault">Assault</option>
+			<option value="Rape">Rape</option>
+			<option value="Murder">Murder</option>
+			<option value="Theft">Theft</option>
+			<option value="Cybercrime">Cybercrime</option>
+			<option value="Armed-Robbery">Armed Robbery</option>
+			<option value="Identity-Theft">Identity Theft</option>
+			<option value="Arson">Arson</option>
+			<option value="Kidnapping">Kidnapping</option>
+			<option value="Public-Peace-Violation">Public Peace Violation</option>
+		</select>
+	</div>
+	<br>
+	<div>
+		<label>Name of Offender: </label>
+		<input name="nOffender" type="text">
+	</div>
+	<br>
+	<div>
+		<label>Matric of Offender: </label>
+		<input name="mOffender" type="text">
+	</div>
+	<br>
+	<div>
+		<label class="desc" >Location Of Incident </label> <textarea name="lIncident" id="describe" cols="30" rows="5"></textarea><br>
+	</div>
+	<br>
+	<div>
+		<label class="desc" >Detailed Description (Images and videos if available): </label> <textarea name="dDescription" id="describe" cols="30" rows="10"></textarea><br>
+	</div>
+	<div class="upload">
+		<input type="file"  accept="image/*" name="image" id="file" style="display: none;">
+		<p><label for="file" style="cursor: pointer;">Upload Image</label></p>
+	</div>
+	<br>
+		<div class="btns">
+			<div>
+				<input type="submit" value="Submit"><a href="/">clear</a>
+			</div>
+		</div>
+	</form>
+</main>
+<script>
+	const form = document.querySelector("form");
+
+	form.addEventListener("submit", async (e) => {
+		e.preventDefault();
+
+		const tCrime = form.tCrime.value;
+		const nOffender = form.nOffender.value;
+		const mOffender = form.mOffender.value;
+		const lIncident = form.lIncident.value;
+		const dDescription = form.dDescription.value;
+
+		try {
+			const res = await fetch("/newreport", {
+				method: 'POST',
+				body: JSON.stringify({tCrime, nOffender, mOffender, lIncident, dDescription}),
+				headers: { 'Content-Type': 'application/json'}
+			});
+			const data = await res.json();
+			if(data) {
+				console.log(data)
+				location.assign("/history");
+			}
+		} catch (err) {
+			console.log(err)
+		}
+	})
+</script>
+<%- include("partials/footer") %>

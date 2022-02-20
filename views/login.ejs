@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="styles/login.css">
+	<script src="https://kit.fontawesome.com/6bdbba266b.js" crossorigin="anonymous"></script>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;900&display=swap" rel="stylesheet">
+	<title><%= title %></title>
+</head>
+<body>
+	<section>
+		<header>
+			<nav>
+				<div>
+					<a href="index.html">CUL CRIME WATCH</a> 
+				</div>
+			</nav>
+	<main>
+			<div class="container">
+				<form>
+					<div>
+						<div class="icon">
+							<i class="fa-solid fa-user-tie"></i>
+						</div>
+						<p class="sign-in">Sign In</p>
+					</div>
+					<input type="text" name="email" placeholder="Email"><br>
+					<div class="email error"></div>
+					<input type="password" name="password" placeholder="Password"><br>
+					<div class="password error"></div>
+					<input type="submit" value="Log In">
+					<div class="sect">
+					<div>
+						<input type="checkbox" name="rem" id="remem"><label for="input"> Remember me</label>
+					</div>
+						<a href="#">Forgot Password</a>
+					</div>
+					<p>New User? Sign up <a href="/signup">here</a></p>
+				</form>
+			</div>
+</main>
+<script>
+	const form = document.querySelector("form");
+	const emailError = document.querySelector(".email")
+	const passwordError = document.querySelector(".password")
+
+	form.addEventListener("submit", async (e) => {
+		e.preventDefault();
+
+		emailError.textContent = "";
+		passwordError.textContent = "";
+
+		const email = form.email.value;
+		const password = form.password.value;
+
+		try {
+			const res = await fetch("/login", {
+				method: 'POST',
+				body: JSON.stringify({email, password}),
+				headers: { 'Content-Type': 'application/json'}
+			});
+
+			const data = await res.json();
+			if(data.errors) {
+				emailError.textContent = data.errors.email
+				passwordError.textContent = data.errors.password
+			}
+			if(data.user) {
+				location.assign("/");
+			}
+		} catch (err) {
+			console.log(err)
+		}
+	})
+</script>
+<%- include("partials/footer") %>
