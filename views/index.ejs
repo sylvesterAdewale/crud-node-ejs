@@ -1,0 +1,48 @@
+<%- include("partials/header") %>
+<div class="container">
+	<section class="main">
+		<div class="main-in">
+			<figure>
+				<img src="/images/john.jpg" height="150" width="90">
+				<figcaption style="text-transform: capitalize;"><%= user.firstName + " " + user.lastName %></figcaption>
+		</figure>
+		</div>
+	</section>
+	<section class="info">
+		<div class="info-in">
+			<div class="info-contain">
+				<div>
+					<p>Full Name </p> <span class="details" style="text-transform: capitalize;"><%= user.firstName + " " + user.lastName %></span>
+				</div>
+				<div>
+					<p>Email </p><span class="details"><%= user.email %></span>
+				</div>
+				<div>
+					<p>Matric No </p><span class="details"><%= user.matricNo %></span>
+				</div>
+				<div>
+					<p>Username </p><span class="details">@<%= user.userName %></span>
+				</div>
+				<div>
+					<p>Department </p><span class="details"><%= user.department %></span>
+				</div>
+			</div>
+			</div>
+	</section>
+	<section class="button">
+		<input type="button" value="Edit" class="button3">
+	</section>
+</div>
+<section class="about">
+		<div class="welcome">
+			<p>Welcome <span><%= user.userName %></span>!
+		</div>
+	<div class="ab">
+		<p class="about-us">About Us</p> 
+		<p>
+			Obcaecati, fugiat natus harum beatae recusandae sunt, temporibus esse molestias vel dicta quod ullam! Nostrum doloribus eveniet earum praesentium consequatur? Ipsa, ratione.
+			Voluptas eos accusantium quaerat laboriosam quia doloremque, similique expedita perferendis sunt.
+		</p>
+	</div>
+</section>
+<%- include("partials/footer") %>
