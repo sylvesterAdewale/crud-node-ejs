@@ -4,13 +4,13 @@ const authRoutes = require("./routes/authRoutes")
 const reportRoutes = require("./routes/reportRoutes")
 const cookieParser = require("cookie-parser");
 const { requireAuth, checkUser } = require('./middleware/authMiddleware');
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 const app = express();
 
 app.set("view engine", "ejs")
 app.use(express.static("public"))
 app.use(express.urlencoded({extended: true}))
-app.use(express.json())
+app.use(express.json());
 app.use(cookieParser())
 
 mongoose.connect("mongodb+srv://dbUser:Sylvester28@dojotest.eaxo2.mongodb.net/crimeApp?retryWrites=true&w=majority").then(() =>{

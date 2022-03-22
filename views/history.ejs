@@ -1,16 +1,20 @@
 <%- include("partials/header") %>
 <div class="container">
     <h2>History</h2>
-    <div class="h-table">
+    <!-- <div class="h-table">
         <h4>Matric Number Of Offender</h4>
         <h4>Type of crime</h4>
         <h4>Status</h4>
-    </div>
+    </div> -->
     <% reports.forEach(report => { %>
         <div class="h-table">
             <p><%= report.mOffender %></p>
             <p><%= report.tCrime %></p>
-            <p style="color: #c9a42d; font-weight: 500;">pending</p>
+            <% if (!report.isResolved) { %>
+                <p style="color: #c9a42d; font-weight: 500;">Pending</p>
+            <% } else { %>
+                <p style="color: #059134; font-weight: 500;">Resolved</p>
+            <% } %> 
         </div>
     <% }); %>
 </div>

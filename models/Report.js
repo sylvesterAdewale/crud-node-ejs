@@ -20,7 +20,12 @@ const reportSchema = new mongoose.Schema({
     dDescription: {
         type: String,
         required: true,
-    }
+    },
+    isResolved: {
+        type: Boolean,
+        required: true,
+        default: false,
+    },
 })
 
 const Report = mongoose.model("report", reportSchema);
