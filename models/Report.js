@@ -20,6 +20,11 @@ const reportSchema = new mongoose.Schema({
     dDescription: {
         type: String,
         required: true,
+    },
+    isResloved: {
+        type: Boolean,
+        default: false,
+        required: true,
     }
 })
 
