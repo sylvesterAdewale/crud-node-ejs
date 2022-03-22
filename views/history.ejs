@@ -8,7 +8,7 @@
     </div> -->
     <% reports.forEach(report => { %>
         <div class="h-table">
-        <p><%= report.isResolved %></p>
+        <% console.log(report.isResolved) %>
             <p><%= report.mOffender %></p>
             <p><%= report.tCrime %></p>
             <% if (!report.isResolved) { %>
