@@ -10,7 +10,11 @@
         <div class="h-table">
             <p><%= report.mOffender %></p>
             <p><%= report.tCrime %></p>
-            <p style="color: #c9a42d; font-weight: 500;">pending</p>
+            <% if (!report.isResolved) { %>
+                <p style="color: #c9a42d; font-weight: 500;">Pending</p>
+            <% } else { %>
+                <p style="color: #059134; font-weight: 500;">Resolved</p>
+            <% } %>
         </div>
     <% }); %>
 </div>
